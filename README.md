@@ -64,6 +64,7 @@ EventPost.getDefault().post("msgId", "arg1", { params1: "bbb" })
 | on   | string,function,sticky | 注册订阅方法，并配置是否支持粘性 |
 | off  | string,function        | 反注册订阅方法          |
 | once | string,function        | 注册一次性订阅方法        |
+| post | string,...args:any[]   | 发送消息             |
 
 ### Subscriber 装饰器
 
@@ -95,9 +96,9 @@ DevEco Studio: 4.1.3.700, SDK: API11 DP2 (B.0.73)
 
 ## 贡献代码
 
-使用过程中发现任何问题都可以提 [Issue](https://gitee.com/Duke_Bit/hrouter/issues)
-给我，当然，我也非常欢迎你给我发 [PR](https://gitee.com/Duke_Bit/hrouter) 。
+使用过程中发现任何问题都可以提 [Issue](https://gitee.com/Duke_Bit/eventpost/issues)
+给我，当然，我也非常欢迎你给我发 [PR](https://gitee.com/Duke_Bit/eventpost) 。
 
 ## 开源协议
 
-本项目基于 [MIT license](https://gitee.com/Duke_Bit/hrouter/blob/master/LICENSE) ，请自由地享受和参与开源。
+本项目基于 [MIT license](https://gitee.com/Duke_Bit/eventpost/blob/master/LICENSE) ，请自由地享受和参与开源。
