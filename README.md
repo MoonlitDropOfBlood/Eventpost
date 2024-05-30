@@ -1,37 +1,103 @@
-# Eventpost
+# EventPost
 
-#### 介绍
-HarmonyOS的事件服务
+## 简介
 
-#### 软件架构
-软件架构说明
+EventPost是一款消息总线，具有生命周期感知能力，支持Sticky。
 
+- 支持Sticky消息；
+- 支持组件销毁时自动注销，防止内存泄漏；
 
-#### 安装教程
+## 下载安装
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+````
+ohpm install eventpost
+````
 
-#### 使用说明
+OpenHarmony ohpm
+环境配置等更多内容，请参考[如何安装 OpenHarmony ohpm 包](https://gitee.com/openharmony-tpc/docs/blob/master/OpenHarmony_har_usage.md)
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## 使用说明
 
-#### 参与贡献
+### 注册订阅者
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+```typescript
+import { EventPost } from "eventpost";
 
+EventPost.getDefault().on("msgId", (arg1:object, arg2:object) => {
+})
+```
 
-#### 特技
+```
+import {Subscriber} from "eventpost";
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+@Component
+struct NextPage {
+  
+  build(){
+    ...
+  }
+  
+  @Subscriber("msgId")
+  onMsg(arg1:object,arg2:object){
+  }
+}
+```
+
+- 目前仅在使用装饰器的情况下能够感知组件生命周期
+- 使用on的方法注册的话，需要自行off防止内存泄漏
+
+### 发送消息
+
+```typescript
+import { EventPost } from "eventpost";
+
+EventPost.getDefault().post("msgId", "arg1", { params1: "bbb" })
+
+```
+
+## 接口说明
+
+### EventPost
+
+| 方法名  | 入参                     | 接口描述             |
+|:-----|:-----------------------|:-----------------|
+| on   | string,function,sticky | 注册订阅方法，并配置是否支持粘性 |
+| off  | string,function        | 反注册订阅方法          |
+| once | string,function        | 注册一次性订阅方法        |
+
+### Subscriber 装饰器
+
+|   接口名    | 功能描述描述 |
+|:--------:|:------:|
+| TypeName |  消息ID  |
+|  sticky  | 是否支持粘性 |
+
+## 约束与限制
+
+在下述版本验证通过：
+
+DevEco Studio: 4.1.3.700, SDK: API11 DP2 (B.0.73)
+
+## 目录结构
+
+````
+|---- eventpost
+|     |---- AppScrope  # 示例代码文件夹
+|     |---- entry  # 示例代码文件夹
+|     |---- examples # 示例代码文件夹  
+|     |---- library # eventpost库文件夹  
+|           |---- build  # eventpost模块打包后的文件
+|           |---- src/main/ets/eventpost # EventPost主入口
+|           |---- index.ets  # 对外接口     
+|     |---- README.md  # 安装使用方法
+|     |---- CHANGELOG.md  # 更新日志
+````
+
+## 贡献代码
+
+使用过程中发现任何问题都可以提 [Issue](https://gitee.com/Duke_Bit/hrouter/issues)
+给我，当然，我也非常欢迎你给我发 [PR](https://gitee.com/Duke_Bit/hrouter) 。
+
+## 开源协议
+
+本项目基于 [MIT license](https://gitee.com/Duke_Bit/hrouter/blob/master/LICENSE) ，请自由地享受和参与开源。

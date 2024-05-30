@@ -1,9 +1,19 @@
 {
-  "name": "library",
+  "name": "eventpost",
   "version": "1.0.0",
-  "description": "Please describe the basic information.",
+  "description": "事件分发，支持组件中的lifecycle",
   "main": "Index.ets",
-  "author": "",
-  "license": "Apache-2.0",
+  "author": "duke",
+  "license": "MIT",
+  "keywords": [
+    "event",
+    "post",
+    "lifecycle",
+    "listen",
+    "dispatch",
+    "HarmonyOS",
+  ],
+  "repository": "https://gitee.com/Duke_Bit/hrouter",
+  "homepage": "https://gitee.com/Duke_Bit",
   "dependencies": {}
 }
