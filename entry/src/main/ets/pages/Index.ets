@@ -31,7 +31,8 @@ struct Index {
   }
 
   @Subscriber("test",true)
-  onMessage(args: object) {
+  onMessage(args: string) {
     console.log("test"+args)
+    this.message = args
   }
 }

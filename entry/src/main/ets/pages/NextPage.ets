@@ -31,4 +31,9 @@ struct NextPage {
   aboutToDisappear(): void {
     console.log("aboutToDisappearNext")
   }
+
+  aboutToAppear(): void {
+    console.log("1111")
+    this.message = "fff"
+  }
 }

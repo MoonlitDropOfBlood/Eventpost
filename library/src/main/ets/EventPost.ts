@@ -21,15 +21,15 @@ export class EventPost {
     this.dispatch.emit(TypeNam, args)
   }
 
-  on(TypeName: string, callback: Function, sticky: boolean = false) {
-    this.dispatch.on(TypeName, callback, sticky)
+  on(TypeName: string, callback: Function, sticky: boolean = false, callThis?: any) {
+    this.dispatch.on(TypeName, callback, callThis, sticky)
   }
 
   off(TypeName: string, callback: Function) {
     this.dispatch.off(TypeName, callback)
   }
 
-  once(TypeName: string, callback: Function) {
-    this.dispatch.once(TypeName, callback)
+  once(TypeName: string, callback: Function, callThis?: any) {
+    this.dispatch.once(TypeName, callback, callThis)
   }
 }

@@ -2,16 +2,19 @@ import { HashMap, HashSet } from '@kit.ArkTS';
 
 export class Dispatch {
   private map = new HashMap<string, HashSet<Function>>()
+  private callThis = new HashMap<Function, any>()
   private stickyEvent = new HashMap<string, Array<object>>()
 
-  on(TypeName: string, callback: Function, sticky: boolean): void {
+  on(TypeName: string, callback: Function, callThis: any, sticky: boolean): void {
     const fn = this.map.get(TypeName) || new HashSet()
-    fn.add(callback)
+    if (fn.add(callback)) {
+      this.callThis.set(callback, callThis)
+    }
     this.map.set(TypeName, fn)
     if (sticky) {
       let event = this.stickyEvent.get(TypeName)
       if (event) {
-        this.call(callback, event)
+        this.call(callback, callThis, event)
       }
     }
   }
@@ -21,14 +24,14 @@ export class Dispatch {
     const eventName = this.map.get(TypeNam)
     if (eventName) {
       eventName.forEach(fn => {
-        this.call(fn, args)
+        this.call(fn, this.callThis.get(fn), args)
       })
     }
     this.stickyEvent.set(TypeNam, args)
   }
 
-  private async call(fn: Function, args: Array<any>) {
-    fn.apply(this, args)
+  private async call(fn: Function, callThis: any, args: Array<any>) {
+    fn.call(callThis, ...args)
   }
 
   off(TypeName: string, callback: Function): void {
@@ -36,14 +39,15 @@ export class Dispatch {
     if (eventName && callback) {
       eventName.remove(callback)
     }
+    this.callThis.remove(callback)
   }
 
-  once(TypeName: string, callback: Function): void {
+  once(TypeName: string, callback: Function, callThis: any): void {
     let decor = (...args: Array<any>) => {
       callback.apply(this, args) // 执行然后删除
       this.off(TypeName, decor) // 删除方法
     }
     // 使用on添加到，list中
-    this.on(TypeName, decor, false);
+    this.on(TypeName, decor, callThis, false);
   }
 }

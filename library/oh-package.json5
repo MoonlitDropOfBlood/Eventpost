@@ -1,6 +1,6 @@
 {
   "name": "eventpost",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "事件分发，支持组件中的lifecycle",
   "main": "Index.ets",
   "author": "duke",
