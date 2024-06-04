@@ -1,8 +1,8 @@
 {
   "name": "eventpost",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "事件分发，支持组件中的lifecycle",
-  "main": "Index.ets",
+  "main": "Index.ts",
   "author": "duke",
   "license": "MIT",
   "keywords": [
@@ -13,7 +13,7 @@
     "dispatch",
     "HarmonyOS",
   ],
-  "repository": "https://gitee.com/Duke_Bit/hrouter",
+  "repository": "https://gitee.com/Duke_Bit/eventpost",
   "homepage": "https://gitee.com/Duke_Bit",
   "dependencies": {}
 }

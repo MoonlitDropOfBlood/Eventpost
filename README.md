@@ -26,6 +26,7 @@ import { EventPost } from "eventpost";
 EventPost.getDefault().on("msgId", (arg1:object, arg2:object) => {
 })
 ```
+- 使用限制，不添加callThis 则this指向 undefined 添加callThis,则this指向callThis
 
 ```
 import {Subscriber} from "eventpost";
@@ -59,12 +60,12 @@ EventPost.getDefault().post("msgId", "arg1", { params1: "bbb" })
 
 ### EventPost
 
-| 方法名  | 入参                     | 接口描述             |
-|:-----|:-----------------------|:-----------------|
-| on   | string,function,sticky | 注册订阅方法，并配置是否支持粘性 |
-| off  | string,function        | 反注册订阅方法          |
-| once | string,function        | 注册一次性订阅方法        |
-| post | string,...args:any[]   | 发送消息             |
+| 方法名  | 入参                              | 接口描述             |
+|:-----|:--------------------------------|:-----------------|
+| on   | string,function,sticky,callThis | 注册订阅方法，并配置是否支持粘性 |
+| off  | string,function                 | 反注册订阅方法          |
+| once | string,function,callThis        | 注册一次性订阅方法        |
+| post | string,...args:any[]            | 发送消息             |
 
 ### Subscriber 装饰器
 
