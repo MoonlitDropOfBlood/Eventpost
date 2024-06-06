@@ -7,7 +7,7 @@ export function Subscriber(TypeName: string, sticky: boolean = false) {
         let oldFunction = target.aboutToDisappear
         function disappear(){
           EventPost.getDefault().off(TypeName, propertyDescriptor.value)
-          oldFunction.call(disappear.prototype.caller)
+          oldFunction.call(this)
         }
         target.aboutToDisappear = disappear
       } else {
