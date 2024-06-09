@@ -50,4 +50,8 @@ export class Dispatch {
     // 使用on添加到，list中
     this.on(TypeName, decor, callThis, false);
   }
+
+  getTypeValue(TypeName: string): object | undefined {
+    return this.stickyEvent.get(TypeName)
+  }
 }

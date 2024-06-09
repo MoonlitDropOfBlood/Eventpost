@@ -32,4 +32,8 @@ export class EventPost {
   once(TypeName: string, callback: Function, callThis?: any) {
     this.dispatch.once(TypeName, callback, callThis)
   }
+
+  getTypeValue(TypeName:string):object|undefined{
+    return this.dispatch.getTypeValue(TypeName)
+  }
 }
