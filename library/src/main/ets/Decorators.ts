@@ -1,34 +1,39 @@
-import { EventPost } from './EventPost'
+import { EventPost } from './EventPost';
 
 export function Subscriber(TypeName: string, sticky: boolean = false) {
   return (target: any, _: string, propertyDescriptor: PropertyDescriptor) => {
     if (target.rerender) {
+      const originalMethod = propertyDescriptor.value;
+
       if (target.aboutToDisappear) {
-        let oldFunction = target.aboutToDisappear
-        function disappear(){
-          EventPost.getDefault().off(TypeName, propertyDescriptor.value)
-          oldFunction.call(this)
-        }
-        target.aboutToDisappear = disappear
+        const oldFunction = target.aboutToDisappear;
+        target.aboutToDisappear = function() {
+          EventPost.getDefault().off(TypeName, this._subscriberCallback);
+          oldFunction.call(this);
+        };
       } else {
-        target.aboutToDisappear = () => {
-          EventPost.getDefault().off(TypeName, propertyDescriptor.value)
-        }
+        target.aboutToDisappear = function() {
+          EventPost.getDefault().off(TypeName, this._subscriberCallback);
+        };
       }
 
       if (target.aboutToAppear) {
-        let oldFunction = target.aboutToAppear
-        function appear(){
-          EventPost.getDefault().on(TypeName, propertyDescriptor.value, sticky, this)
-          oldFunction.call(this)
-        }
-        target.aboutToAppear = appear
+        const oldFunction = target.aboutToAppear;
+        target.aboutToAppear = function() {
+          this._subscriberCallback = (...args: any[]) => {
+            originalMethod.apply(this, args);
+          };
+          EventPost.getDefault().on(TypeName, this._subscriberCallback, sticky, this);
+          oldFunction.call(this);
+        };
       } else {
-        function appear(){
-          EventPost.getDefault().on(TypeName, propertyDescriptor.value, sticky, this)
-        }
-        target.aboutToAppear = appear
+        target.aboutToAppear = function() {
+          this._subscriberCallback = (...args: any[]) => {
+            originalMethod.apply(this, args);
+          };
+          EventPost.getDefault().on(TypeName, this._subscriberCallback, sticky, this);
+        };
       }
     }
-  }
+  };
 }
