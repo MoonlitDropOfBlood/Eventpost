@@ -1,5 +1,6 @@
 import { router } from '@kit.ArkUI';
 import { EventPost, Subscriber } from 'EventPost/Index';
+import { CustomView } from './CustView';
 
 @Entry
 @Component
@@ -9,6 +10,10 @@ struct Index {
   build() {
     Row() {
       Column() {
+        CustomView({name: "我是1"})
+        CustomView({name: "我是2"})
+        CustomView({name: "我是3"})
+        CustomView({name: "我是4"})
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
