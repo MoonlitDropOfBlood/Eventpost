@@ -1,9 +1,26 @@
 import { HashMap, HashSet } from '@kit.ArkTS';
+import emitter from '@ohos.events.emitter';
+import { StickyEvent } from 'libnative_event_post.so';
 
 export class Dispatch {
   private map = new HashMap<string, HashSet<Function>>()
   private callThis = new HashMap<Function, any>()
-  private stickyEvent = new HashMap<string, Array<object>>()
+  private stickyEvent = new StickyEvent()
+
+  private static readonly DISPATCH_KEY = 'EVENT_POST_DISPATCH_KEY'
+
+  constructor() {
+    emitter.on(Dispatch.DISPATCH_KEY,(message)=>{
+      let typeName:string = message.data['typeName']
+      let messageData = message.data['messageData']
+      const eventName = this.map.get(typeName)
+      if (eventName) {
+        eventName.forEach(fn => {
+          this.call(fn, this.callThis.get(fn), messageData)
+        })
+      }
+    })
+  }
 
   on(TypeName: string, callback: Function, callThis: any, sticky: boolean): void {
     const fn = this.map.get(TypeName) || new HashSet()
@@ -14,20 +31,22 @@ export class Dispatch {
     if (sticky) {
       let event = this.stickyEvent.get(TypeName)
       if (event) {
-        this.call(callback, callThis, event)
+        this.call(callback, callThis, JSON.parse(event))
       }
     }
   }
 
-  emit(TypeNam: string, args: any[]): void {
-    // 判断是不是有emit的post这个对应的方法去执行
-    const eventName = this.map.get(TypeNam)
-    if (eventName) {
-      eventName.forEach(fn => {
-        this.call(fn, this.callThis.get(fn), args)
-      })
+  emit(TypeName: string, args: any[],isStickyEvent:boolean): void {
+    let eventData: emitter.EventData = {
+      data: {
+        'typeName': TypeName,
+        'messageData':args
+      }
+    };
+    emitter.emit(Dispatch.DISPATCH_KEY, eventData)
+    if(isStickyEvent) {
+      this.stickyEvent.set(TypeName, JSON.stringify(args))
     }
-    this.stickyEvent.set(TypeNam, args)
   }
 
   private async call(fn: Function, callThis: any, args: Array<any>) {
@@ -51,7 +70,12 @@ export class Dispatch {
     this.on(TypeName, decor, callThis, false);
   }
 
-  getTypeValue(TypeName: string): object | undefined {
-    return this.stickyEvent.get(TypeName)
+  getTypeValue(TypeName: string): any[] | undefined {
+    let result = this.stickyEvent.get(TypeName)
+    if(result){
+      return JSON.parse(result)
+    }else {
+      return undefined
+    }
   }
 }

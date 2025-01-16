@@ -1,6 +1,12 @@
 {
   "apiType": "stageMode",
   "buildOption": {
+      "externalNativeOptions": {
+        "path": "./src/main/cpp/CMakeLists.txt",
+        "arguments": "",
+        "cppFlags": "",
+        "abiFilters": ["arm64-v8a","x86_64"]
+      },
   },
   "buildOptionSet": [
     {
@@ -18,6 +24,19 @@
           ]
         }
       },
+      "externalNativeOptions": {
+        "path": "./src/main/cpp/CMakeLists.txt", // 自定义cmake配置脚本CMakeLists.txt的位置，它是以模块根目录为起始位置的相对路径
+        //        "arguments": "-DCMAKE_BUILD_TYPE=Debug", // hvigor将会把此处的自定义参数传递给cmake构建工具，您可通过cmake官方文档查找您所需的编译参数，同时它也将覆盖默认同名参数
+        "arguments": "",
+        "cppFlags": "", // 自定义cpp flags参数
+        "abiFilters": ["arm64-v8a","x86_64"] // 自定义cpp编译架构，默认编译架构为arm64-v8a
+      },
+      "nativeLib": {
+        "debugSymbol": {
+          "strip": true,
+          "exclude": []
+        }
+      }
     },
   ],
   "targets": [

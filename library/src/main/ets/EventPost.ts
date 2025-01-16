@@ -3,7 +3,13 @@ import { Dispatch } from './Dispatch'
 export class EventPost {
   private dispatch: Dispatch = new Dispatch()
 
+  private static isAllSticky = true
+
   private constructor() {
+  }
+
+  public static setAllSticky(isAllSticky: boolean) {
+    EventPost.isAllSticky = isAllSticky
   }
 
   public static getDefault(): EventPost {
@@ -17,8 +23,16 @@ export class EventPost {
     return globalThis.eventPost.default
   }
 
-  post(TypeNam: string, ...args: any[]) {
-    this.dispatch.emit(TypeNam, args)
+  post(TypeName: string, ...args: any[]) {
+    this.dispatch.emit(TypeName, args, EventPost.isAllSticky)
+  }
+
+  postStick(TypeName: string, ...args: any[]) {
+    this.dispatch.emit(TypeName, args, true)
+  }
+
+  postNormal(TypeName: string, ...args: any[]) {
+    this.dispatch.emit(TypeName, args, false)
   }
 
   on(TypeName: string, callback: Function, sticky: boolean = false, callThis?: any) {
@@ -33,7 +47,7 @@ export class EventPost {
     this.dispatch.once(TypeName, callback, callThis)
   }
 
-  getTypeValue(TypeName:string):object|undefined{
+  getTypeValue(TypeName: string): any[] | undefined {
     return this.dispatch.getTypeValue(TypeName)
   }
 }
