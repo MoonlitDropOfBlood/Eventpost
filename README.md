@@ -21,6 +21,15 @@ OpenHarmony ohpm
 
 ## 使用说明
 
+### 可选初始化
+
+```typescript
+import { EventPost } from "eventpost";
+
+EventPost.setAllSticky(true | false)
+
+```
+
 ### 注册订阅者
 
 ```typescript
@@ -64,13 +73,16 @@ EventPost.getDefault().post("msgId", "arg1", { params1: "bbb" })
 
 ### EventPost
 
-| 方法名          | 入参                              | 接口描述             |
-|:-------------|:--------------------------------|:-----------------|
-| on           | string,function,sticky,callThis | 注册订阅方法，并配置是否支持粘性 |
-| off          | string,function                 | 反注册订阅方法          |
-| once         | string,function,callThis        | 注册一次性订阅方法        |
-| post         | string,...args:any[]            | 发送消息             |
-| getTypeValue | string,                         | 获取当前粘性事件         |
+| 方法名          | 入参                              | 接口描述                                     |
+|:-------------|:--------------------------------|:-----------------------------------------|
+| setAllSticky | boolean                         | 配置基础消息发送是否为粘性事假，默认为粘性，跨线配置非粘性，则每个线程均要初始化 |
+| on           | string,function,sticky,callThis | 注册订阅方法，并配置是否支持粘性                         |
+| off          | string,function                 | 反注册订阅方法                                  |
+| once         | string,function,callThis        | 注册一次性订阅方法                                |
+| post         | string,...args:any[]            | 发送消息（受配置影响）                              |
+| postStick    | string,...args:any[]            | 发送粘性消息                                   |
+| postNormal   | string,...args:any[]            | 发送非粘性消息                                  |
+| getTypeValue | string                          | 获取当前粘性事件                                 |
 
 ### Subscriber 装饰器
 
@@ -83,7 +95,7 @@ EventPost.getDefault().post("msgId", "arg1", { params1: "bbb" })
 
 在下述版本验证通过：
 
-DevEco Studio: 4.1.3.700, SDK: API11 DP2 (B.0.73)
+DevEco Studio: 5.0.5.315, SDK: HarmonyOS 5.0.1 Release Ohos_sdk_public 5.0.1.115 (API Version 13 Release)
 
 ## 目录结构
 
