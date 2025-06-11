@@ -1,5 +1,3 @@
-# 有没有公司招鸿蒙开发的啊，求职ing
-
 # EventPost
 
 ## 简介
@@ -57,7 +55,16 @@ struct NextPage {
 }
 ```
 
-- 目前仅在使用装饰器的情况下能够感知组件生命周期
+在组件中使用onFromComponent
+
+```typescript
+import { EventPost } from "eventpost";
+
+EventPost.getDefault().onFromComponent("msgId", this, (arg1:object, arg2:object) => {
+})
+```
+
+- 三种注册方式任性其一，onFromComponent 和装饰器均能感知组件生命周期
 - 使用on的方法注册的话，需要自行off防止内存泄漏
 
 ### 发送消息
@@ -73,16 +80,17 @@ EventPost.getDefault().post("msgId", "arg1", { params1: "bbb" })
 
 ### EventPost
 
-| 方法名          | 入参                              | 接口描述                                     |
-|:-------------|:--------------------------------|:-----------------------------------------|
-| setAllSticky | boolean                         | 配置基础消息发送是否为粘性事假，默认为粘性，跨线配置非粘性，则每个线程均要初始化 |
-| on           | string,function,sticky,callThis | 注册订阅方法，并配置是否支持粘性                         |
-| off          | string,function                 | 反注册订阅方法                                  |
-| once         | string,function,callThis        | 注册一次性订阅方法                                |
-| post         | string,...args:any[]            | 发送消息（受配置影响）                              |
-| postStick    | string,...args:any[]            | 发送粘性消息                                   |
-| postNormal   | string,...args:any[]            | 发送非粘性消息                                  |
-| getTypeValue | string                          | 获取当前粘性事件                                 |
+| 方法名             | 入参                               | 接口描述                                     |
+|:----------------|:---------------------------------|:-----------------------------------------|
+| setAllSticky    | boolean                          | 配置基础消息发送是否为粘性事假，默认为粘性，跨线配置非粘性，则每个线程均要初始化 |
+| on              | string,function,sticky,callThis  | 注册订阅方法，并配置是否支持粘性                         |
+| onFromComponent | string,component,function,sticky | 注册订阅方法，并配置是否支持粘性，仅支持组件内注册，能够自动反注册        |           |
+| off             | string,function                  | 反注册订阅方法                                  |
+| once            | string,function,callThis         | 注册一次性订阅方法                                |
+| post            | string,...args:any[]             | 发送消息（受配置影响）                              |
+| postStick       | string,...args:any[]             | 发送粘性消息                                   |
+| postNormal      | string,...args:any[]             | 发送非粘性消息                                  |
+| getTypeValue    | string                           | 获取当前粘性事件                                 |
 
 ### Subscriber 装饰器
 

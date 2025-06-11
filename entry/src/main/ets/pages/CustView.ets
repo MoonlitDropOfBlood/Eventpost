@@ -13,4 +13,10 @@ export struct CustomView {
     console.error("收到 test1 " + JSON.stringify(event))
     this.name = '收到 test1: ' + event
   }
+
+  @Subscriber("test2")
+  onReceived2(event: object) {
+    console.error("收到 test1 " + JSON.stringify(event))
+    this.name = '收到 test1: ' + event
+  }
 }

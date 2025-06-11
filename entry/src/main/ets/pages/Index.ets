@@ -7,17 +7,26 @@ import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 @Component
 struct Index {
   @State message: string = 'Hello World';
+  @State showCustom: boolean = true
 
   build() {
     Row() {
       Column() {
-        CustomView({name: "我是1"})
-        CustomView({name: "我是2"})
-        CustomView({name: "我是3"})
-        CustomView({name: "我是4"})
+        if (this.showCustom) {
+          CustomView({ name: "我是1" })
+          CustomView({ name: "我是2" })
+          CustomView({ name: "我是3" })
+          CustomView({ name: "我是4" })
+        }
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
+
+        Button("销毁测试")
+          .margin({ top: 16 })
+          .onClick(() => {
+            this.showCustom = false
+          })
 
         Button("下一页")
           .margin({ top: 16 })
@@ -59,7 +68,7 @@ struct Index {
         Button("发送消息")
           .margin({ top: 16 })
           .onClick(() => {
-            EventPost.getDefault().post("test1","112233")
+            EventPost.getDefault().post("test1", "112233")
           })
       }
       .width('100%')
@@ -69,7 +78,7 @@ struct Index {
 
   @Subscriber("test",true)
   onMessage(args: string) {
-    console.log("test"+args)
+    console.log("test" + args)
     this.message = args
   }
 }

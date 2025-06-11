@@ -28,6 +28,11 @@ struct NextPage {
     console.log("test1"+ff)
   }
 
+  @Subscriber("test2",true)
+  onMessage1(ff:string){
+    console.log("test12"+ff)
+  }
+
   aboutToDisappear(): void {
     console.log("aboutToDisappearNext")
   }
@@ -35,5 +40,8 @@ struct NextPage {
   aboutToAppear(): void {
     console.log("1111")
     this.message = "fff"
+    EventPost.getDefault().onFromComponent('test1',this,()=>{
+      console.log("2222")
+    },true)
   }
 }

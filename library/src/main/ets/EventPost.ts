@@ -39,6 +39,18 @@ export class EventPost {
     this.dispatch.on(TypeName, callback, callThis, sticky)
   }
 
+  /**
+   * 组件
+   *
+   * @param TypeName
+   * @param component
+   * @param callback
+   * @param sticky
+   */
+  onFromComponent(TypeName: string, component: any, callback: Function, sticky: boolean = false) {
+
+  }
+
   off(TypeName: string, callback: Function) {
     this.dispatch.off(TypeName, callback)
   }
