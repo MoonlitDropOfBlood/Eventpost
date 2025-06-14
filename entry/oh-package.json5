@@ -6,7 +6,8 @@
   "author": "",
   "license": "",
   "dependencies": {
-    EventPost: "file:../library"
+    'eventpost': "file:../library",
+    '@duke/component-lifecycle': "file:../library/library.har"
   }
 }
 

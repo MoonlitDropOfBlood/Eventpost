@@ -1,5 +1,6 @@
 export interface EventOnInfo {
   typeName: string
-  sticky?: boolean
-  callBack:Function
+  methodName: string
+  sticky: boolean
+  callBack: Function
 }

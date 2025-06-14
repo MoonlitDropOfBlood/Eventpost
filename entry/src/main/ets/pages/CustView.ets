@@ -1,11 +1,20 @@
-import { Subscriber } from 'EventPost'
+import { Subscriber } from 'eventpost'
 
 @Component
 export struct CustomView {
   @State name: string = "CustView"
 
+  aboutToAppear(): void {
+    console.log("aboutToAppear")
+  }
+
   build() {
     Text(this.name)
+  }
+
+  onDidBuild(): void {
+    let a = this as object as Record<string,object>
+    console.log("onDidBuild"+a['_ComponentLifecycle']+'')
   }
 
   @Subscriber("test1")

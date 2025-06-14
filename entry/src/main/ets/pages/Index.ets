@@ -1,11 +1,13 @@
 import { router } from '@kit.ArkUI';
-import { EventPost, Subscriber } from 'EventPost/Index';
+import { EventPost, Subscriber } from 'eventpost';
 import { CustomView } from './CustView';
 import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+import { Lifecycle, LifecycleOwner } from '@duke/component-lifecycle';
 
 @Entry
 @Component
 struct Index {
+  @LifecycleOwner lifecycle: Lifecycle = new Lifecycle();
   @State message: string = 'Hello World';
   @State showCustom: boolean = true
 
@@ -21,6 +23,12 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
+
+        Button("重新加载测试")
+          .margin({ top: 16 })
+          .onClick(() => {
+            this.showCustom = true;
+          });
 
         Button("销毁测试")
           .margin({ top: 16 })

@@ -1,5 +1,5 @@
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-import { EventPost } from 'EventPost';
+import { EventPost } from 'eventpost';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
