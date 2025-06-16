@@ -7,7 +7,7 @@
   "license": "",
   "dependencies": {
     'eventpost': "file:../library",
-    '@duke/component-lifecycle': "file:../library/library.har"
+    '@duke/component-lifecycle': "^1.0.2"
   }
 }
 

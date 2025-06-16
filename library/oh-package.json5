@@ -17,6 +17,6 @@
   "homepage": "https://gitee.com/Duke_Bit",
   "dependencies": {
     "libnative_event_post.so": "file:./src/main/cpp/types/libeventpost",
-    "@duke/component-lifecycle": "file:./library.har"
+    "@duke/component-lifecycle": "^1.0.2"
   }
 }
