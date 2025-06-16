@@ -1,4 +1,4 @@
-import { EventPost, Subscriber } from 'EventPost/Index';
+import { EventPost, Subscriber } from 'eventpost';
 
 @Entry
 @Component
@@ -41,7 +41,7 @@ struct NextPage {
     console.log("1111")
     this.message = "fff"
     EventPost.getDefault().onFromComponent('test1',this,()=>{
-      console.log("2222")
+      console.log("onFromComponent2222")
     },true)
   }
 }

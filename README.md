@@ -1,8 +1,7 @@
-# 有没有公司招鸿蒙开发的啊，求职ing
-
 # EventPost
 
 ## 简介
+[![openHarmony](https://img.shields.io/badge/openharmony-v2.1.1-brightgreen)](https://gitee.com/Duke_Bit/eventpost/releases/tag/v2.1.1)
 
 EventPost是一款消息总线，具有生命周期感知能力，支持Sticky。
 
@@ -130,3 +129,9 @@ DevEco Studio: 5.0.5.315, SDK: HarmonyOS 5.0.1 Release Ohos_sdk_public 5.0.1.115
 ## 开源协议
 
 本项目基于 [MIT license](https://gitee.com/Duke_Bit/eventpost/blob/master/LICENSE) ，请自由地享受和参与开源。
+
+## 其他库
+
+- @duke/component-lifecycle 鸿蒙版本的Lifecycle库，支持组件、Router和Navigation: [https://gitee.com/Duke_Bit/component-lifecycle](https://gitee.com/Duke_Bit/component-lifecycle)
+- @duke/elf-dialog CustomDialog黑魔法 不依赖promptAction 实现的函数级弹窗，省去复杂的模版代码，让你专注于你的业务，一行代码搞定弹窗: [https://gitee.com/Duke_Bit/elf-dialog](https://gitee.com/Duke_Bit/elf-dialog)
+- @duke/elf-refresh OpenHarmony 刷新组件，支持下拉刷新和上拉加载更多，支持各种组件，List、Grid，支持header，footer，目标打造HarmonyOS的SmartRefreshLayout: [https://gitee.com/Duke_Bit/ElfRefresh](https://gitee.com/Duke_Bit/ElfRefresh)

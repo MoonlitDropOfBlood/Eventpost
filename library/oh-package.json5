@@ -1,6 +1,6 @@
 {
   "name": "eventpost",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "事件分发，支持组件中的lifecycle，在组件中使用自动取消订阅",
   "main": "Index.ts",
   "author": "duke",
@@ -16,6 +16,7 @@
   "repository": "https://gitee.com/Duke_Bit/eventpost",
   "homepage": "https://gitee.com/Duke_Bit",
   "dependencies": {
-    "libnative_event_post.so": "file:./src/main/cpp/types/libeventpost"
+    "libnative_event_post.so": "file:./src/main/cpp/types/libeventpost",
+    "@duke/component-lifecycle": "^1.0.2"
   }
 }
