@@ -16,7 +16,8 @@
   "repository": "https://gitee.com/Duke_Bit/eventpost",
   "homepage": "https://gitee.com/Duke_Bit",
   "dependencies": {
-    "libnative_event_post.so": "file:./src/main/cpp/types/libeventpost",
+    "lib_native_event_post.so": "file:./src/main/cangjie/ark_interop_api",
+    "libark_interop_loader.so": "file:./src/main/cangjie/loader",
     "@duke/component-lifecycle": "^1.0.2"
   }
 }

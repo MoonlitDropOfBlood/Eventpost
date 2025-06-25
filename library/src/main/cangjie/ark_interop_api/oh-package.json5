@@ -1,0 +1,6 @@
+{
+  "name": "lib_native_event_post.so",
+  "types": "./ark_interop_api.d.ts",
+  "version": "1.0.0",
+  "description": ""
+}

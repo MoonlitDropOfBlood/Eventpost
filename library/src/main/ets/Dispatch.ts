@@ -1,6 +1,10 @@
 import { HashMap, HashSet } from '@kit.ArkTS';
 import emitter from '@ohos.events.emitter';
-import { StickyEvent } from 'libnative_event_post.so';
+import { requireCJLib } from 'libark_interop_loader.so';
+import { ThreadEmit } from '../cangjie/ark_interop_api/ark_interop_api';
+
+const EVENT_POST_NATIVE = requireCJLib("lib_native_event_post.so") as ThreadEmit;
+
 
 export class Dispatch {
   private map = new HashMap<string, HashSet<Function>>()
@@ -10,16 +14,11 @@ export class Dispatch {
   private static readonly DISPATCH_KEY = 'EVENT_POST_DISPATCH_KEY'
 
   constructor() {
-    emitter.on(Dispatch.DISPATCH_KEY,(message)=>{
-      let typeName:string = message.data['typeName']
-      let messageData = message.data['messageData']
-      const eventName = this.map.get(typeName)
-      if (eventName) {
-        eventName.forEach(fn => {
-          this.call(fn, this.callThis.get(fn), messageData)
-        })
-      }
-    })
+    EVENT_POST_NATIVE.register()
+  }
+
+  onEvent(arg:any[]){
+
   }
 
   on(TypeName: string, callback: Function, callThis: any, sticky: boolean): void {
