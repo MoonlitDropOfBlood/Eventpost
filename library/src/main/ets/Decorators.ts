@@ -4,13 +4,16 @@ import {
 import { EventOnInfo } from './EventOnInfo';
 import { EventPost } from './EventPost';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { Lifecycle,
+import {
+  Lifecycle,
   LifecycleEventObserver,
   LifecycleOwner,
   LifecycleState,
-  LIFECYCLE_DEFAULT, LIFECYCLE_INIT } from '@duke/component-lifecycle';
+  LIFECYCLE_DEFAULT,
+  LIFECYCLE_INIT
+} from '@duke/component-lifecycle';
 
-export function Subscriber(TypeName: string, sticky: boolean = false) {
+export function Subscriber(TypeName: string, sticky: boolean = false): MethodDecorator {
   return (target: any, name: string, propertyDescriptor: PropertyDescriptor) => {
     if (!target.rerender) {
       hilog.warn(0x0000, 'EventPost', '%{public}s', 'Subscriber current target is not a component');
@@ -25,8 +28,7 @@ export function Subscriber(TypeName: string, sticky: boolean = false) {
         sticky: sticky,
         callBack: propertyDescriptor.value
       });
-    }
-    else {
+    } else {
       let cache = target[EVENT_COMPONENT_EVENT_CACHE] as Array<EventOnInfo>;
       cache.push({
         typeName: TypeName,
@@ -46,8 +48,7 @@ export function Subscriber(TypeName: string, sticky: boolean = false) {
       if (!this[LIFECYCLE_DEFAULT]) {
         lifecycle = new Lifecycle();
         this[LIFECYCLE_DEFAULT] = lifecycle;
-      }
-      else {
+      } else {
         lifecycle = this[LIFECYCLE_DEFAULT];
       }
       let observer: LifecycleEventObserver = (source, state) => {
@@ -59,8 +60,7 @@ export function Subscriber(TypeName: string, sticky: boolean = false) {
             };
             EventPost.getDefault().on(item.typeName, source[item.methodName], item.sticky, source);
           });
-        }
-        else if (state == LifecycleState.ON_DISAPPEAR) {
+        } else if (state == LifecycleState.ON_DISAPPEAR) {
           let cache = target[EVENT_COMPONENT_EVENT_CACHE] as Array<EventOnInfo>;
           cache.forEach(item => {
             EventPost.getDefault().off(item.typeName, source[item.methodName]);
