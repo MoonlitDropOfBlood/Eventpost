@@ -1,7 +1,7 @@
 # EventPost
 
 ## 简介
-[![openHarmony](https://img.shields.io/badge/openharmony-v2.1.1-brightgreen)](https://gitee.com/Duke_Bit/eventpost/releases/tag/v2.1.1)
+[![openHarmony](https://img.shields.io/badge/openharmony-v2.1.2-brightgreen)](https://gitee.com/Duke_Bit/eventpost/releases/tag/v2.1.2)
 
 EventPost是一款消息总线，具有生命周期感知能力，支持Sticky。
 
@@ -132,6 +132,10 @@ DevEco Studio: 5.0.5.315, SDK: HarmonyOS 5.0.1 Release Ohos_sdk_public 5.0.1.115
 
 ## 其他库
 
-- @duke/component-lifecycle 鸿蒙版本的Lifecycle库，支持组件、Router和Navigation: [https://gitee.com/Duke_Bit/component-lifecycle](https://gitee.com/Duke_Bit/component-lifecycle)
-- @duke/elf-dialog CustomDialog黑魔法 不依赖promptAction 实现的函数级弹窗，省去复杂的模版代码，让你专注于你的业务，一行代码搞定弹窗: [https://gitee.com/Duke_Bit/elf-dialog](https://gitee.com/Duke_Bit/elf-dialog)
-- @duke/elf-refresh OpenHarmony 刷新组件，支持下拉刷新和上拉加载更多，支持各种组件，List、Grid，支持header，footer，目标打造HarmonyOS的SmartRefreshLayout: [https://gitee.com/Duke_Bit/ElfRefresh](https://gitee.com/Duke_Bit/ElfRefresh)
+- [@duke/logan-ext](https://ohpm.openharmony.cn/#/cn/detail/@duke%2Flogan-ext) Logan扩展库，方便开箱即用: [https://gitee.com/Duke_Bit/logan](https://gitee.com/Duke_Bit/logan)
+- [@duke/logan](https://ohpm.openharmony.cn/#/cn/detail/@duke%2Flogan) Logan是一个为OpenHarmony开发的日志库，对美团技术团队的Logan的鸿蒙化移植版本: [https://gitee.com/Duke_Bit/logan](https://gitee.com/Duke_Bit/logan)
+- [@duke/websocket-client](https://ohpm.openharmony.cn/#/cn/detail/@duke%2Fwebsocket-client)
+  WebSocket库解决官方API的一些bug问题: [https://gitee.com/Duke_Bit/websocket](https://gitee.com/Duke_Bit/websocket)
+- [@duke/component-lifecycle](https://ohpm.openharmony.cn/#/cn/detail/@duke%2Fcomponent-lifecycle) 鸿蒙版本的Lifecycle库，支持组件、Router和Navigation: [https://gitee.com/Duke_Bit/component-lifecycle](https://gitee.com/Duke_Bit/component-lifecycle)
+- [@duke/elf-dialog](https://ohpm.openharmony.cn/#/cn/detail/@duke%2Felf-dialog) CustomDialog黑魔法 不依赖promptAction 实现的函数级弹窗，省去复杂的模版代码，让你专注于你的业务，一行代码搞定弹窗: [https://gitee.com/Duke_Bit/elf-dialog](https://gitee.com/Duke_Bit/elf-dialog)
+- [@duke/elf-refresh](https://ohpm.openharmony.cn/#/cn/detail/@duke%2Felf-refresh) OpenHarmony 刷新组件，支持下拉刷新和上拉加载更多，支持各种组件，List、Grid，支持header，footer，目标打造HarmonyOS的SmartRefreshLayout: [https://gitee.com/Duke_Bit/ElfRefresh](https://gitee.com/Duke_Bit/ElfRefresh)
