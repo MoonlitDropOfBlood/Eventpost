@@ -1,3 +1,4 @@
+import { ViewModel } from '@duke/view-model'
 import { Dispatch } from './Dispatch'
 
 export class EventPost {
@@ -48,6 +49,17 @@ export class EventPost {
    * @param sticky
    */
   onFromComponent(TypeName: string, component: any, callback: Function, sticky: boolean = false) {
+
+  }
+
+  /**
+   * ViewModel
+   * @param TypeName
+   * @param viewModel
+   * @param callback
+   * @param sticky
+   */
+  onFromViewModel(TypeName: string, viewModel: ViewModel, callback: Function, sticky: boolean = false){
 
   }
 

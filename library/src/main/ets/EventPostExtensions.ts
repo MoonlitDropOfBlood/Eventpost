@@ -5,6 +5,7 @@ import { EVENT_COMPONENT_EVENT_CACHE } from './Constants'
 import { EventOnInfo } from './EventOnInfo'
 import { systemDateTime } from '@kit.BasicServicesKit'
 import { FrameNode, UIContext, uiObserver } from '@kit.ArkUI'
+import { ViewModel } from '@duke/view-model'
 
 EventPost.getDefault().onFromComponent =
   function (TypeName: string, component: any, callback: Function, sticky: boolean = false) {
@@ -116,3 +117,23 @@ EventPost.getDefault().onFromComponent =
       }
     }
   }
+
+EventPost.getDefault().onFromViewModel = function (TypeName: string, viewModel: ViewModel, callback: Function, sticky: boolean = false) {
+  let cache:Array<EventOnInfo> | undefined = viewModel['_registerEventPost']
+  if(!cache){
+    cache = viewModel['_registerEventPost'] = new Array<EventOnInfo>()
+    let oldFunction = viewModel.clean
+    viewModel.clean = function () {
+      cache?.forEach(item => {
+        EventPost.getDefault().off(item.typeName, item.callBack)
+      })
+      oldFunction.call(ViewModel)
+    }
+  }
+  cache.push({
+    typeName: TypeName,
+    methodName: '',
+    sticky,
+    callBack: callback
+  })
+}
