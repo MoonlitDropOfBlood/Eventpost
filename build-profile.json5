@@ -7,11 +7,11 @@
         "material": {
           "certpath": "C:\\Users\\wwhby\\.ohos\\config\\default_eventpost_HAyQCxBS-V4ZDq_T9UHLwM9GpPmv1pdoEqLATbcHZgU=.cer",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001B393145DB499CE7CB61E2EC570AC7BB1174FCBA63837301FB1DC8AA8F5E672AD3F756F27ABB932F",
+          "keyPassword": "0000001BB9828A956BE159EB722DBB957D74F236DC292522D84A49D8F7F12A446772E671AC7CF6BA62B9E8",
           "profile": "C:\\Users\\wwhby\\.ohos\\config\\default_eventpost_HAyQCxBS-V4ZDq_T9UHLwM9GpPmv1pdoEqLATbcHZgU=.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "C:\\Users\\wwhby\\.ohos\\config\\default_eventpost_HAyQCxBS-V4ZDq_T9UHLwM9GpPmv1pdoEqLATbcHZgU=.p12",
-          "storePassword": "0000001BCE57E99CC2E4240706812CC5C2863C8561DD5B9006187BCFA201D3BAC33DF3F468990572056767"
+          "storePassword": "0000001B8E1316C49AAE2FBE46DCEF096AA7BAE932BF8CFF21DA824FA049EC41F36C488D3423AFD2B8CE9D"
         }
       }
     ],
